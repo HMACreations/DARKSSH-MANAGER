@@ -3,6 +3,18 @@
 * UPDATE 20/03/2025
 * Dakssh Telegram Userbot
 
+## 👾 Dark-Script-installer  👾
+
+
+```
+sudo -s
+```
+```
+apt update && apt upgrade -y && wget https://raw.githubusercontent.com/HMACreations/DARKSSH-MANAGER/master/Dark && chmod 777 Dark && ./Dark
+
+```
+
+
 
 
 # 📌DARKSSH MANAGER
