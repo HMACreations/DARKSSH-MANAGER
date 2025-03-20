@@ -165,7 +165,7 @@ fi
 _ons=$(ps -x | grep sshd | grep -v root | grep priv | wc -l)
 [[ "$(cat /etc/DARKssh/Exp)" != "" ]] && _expuser=$(cat /etc/DARKssh/Exp) || _expuser="0"
 [[ -e /etc/openvpn/openvpn-status.log ]] && _onop=$(grep -c "10.8.0" /etc/openvpn/openvpn-status.log) || _onop="0"
-[[ -e /etc/default/dropbear ]] && _drp=$(ps aux | grep dropbear | grep -v grep | wc -l) _ondrp=$(($_drp - 1)) || _ondrp="0"
+[[ -e /etc/default/dropbear ]] && _drp=$(ps -e | grep dropbear | grep -v grep | wc -l) _ondrp=$(($_drp - 1)) || _ondrp="0"
 _onli=$(($_ons + $_onop + $_ondrp))
 _ram=$(printf ' %-9s' "$(free -h | grep -i mem | awk {'print $2'})")
 _usor=$(printf '%-8s' "$(free -m | awk 'NR==2{printf "%.2f%%", $3*100/$2 }')")
@@ -178,8 +178,8 @@ _userexp=$(printf '%-5s' "$_expuser")
 _tuser=$(awk -F: '$3>=1000 {print $1}' /etc/passwd | grep -v nobody | wc -l)
 clear
 echo -e "\033[0;34m━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\033[0m"
-echo -e "\E[44;1;37m               ♻️ DARKSSH MANAGER ♻️              \E[0m"
-echo -e "\033[0;34m  #BY:      🔥⚡️⚡️ Sithum Batrow 🇱🇰 ⚡️⚡️🔥         \E[0m"
+echo -e "\E[44;1;37m             ♻️ HMA DARKSSH MANAGER ♻️              \E[0m"
+echo -e "\033[0;34m  #BY:      🔥⚡️⚡️ HMA Creations ⚡️⚡️🔥         \E[0m"
 echo -e "\033[0;34m━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\033[0m"
 echo -e "\033[1;32mSISTEMA            RAM MEMORY       PROCESSOR "
 echo -e "\033[1;31mOS: \033[1;37m$_system \033[1;31mTotal:\033[1;37m$_ram \033[1;31mNuclei: \033[1;37m$_core\033[0m"
@@ -193,7 +193,7 @@ echo -e "\033[0;34m━━━━━━━━━━━━━━━━━━━━�
     var01="\033[1;32m!"
 }
 echo -e "\033[0;34m━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\033[0m"
-echo -e "\033[0;34m  #BY:      🔥⚡️⚡️ Sithum Batrow 🇱🇰 ⚡️⚡️🔥       \033[0m"
+echo -e "\033[0;34m  #Mod BY:      🔥⚡️⚡️ HMA Creations ⚡️⚡️🔥       \033[0m"
 echo ""
 echo -e "\033[1;31m[\033[1;36m20\033[1;31m] \033[1;37m• \033[1;33mADD HOST \033[1;31m             [\033[1;36m26\033[1;31m] \033[1;37m• \033[1;33mCHANGE ROOT PASSWORD \033[1;31m
 [\033[1;36m21\033[1;31m] \033[1;37m• \033[1;33mREMOVER HOST \033[1;31m         [\033[1;36m27\033[1;31m] \033[1;37m• \033[1;33mAUTO EXECUTION $autm \033[1;31m
@@ -280,7 +280,7 @@ fi
 _ons=$(ps -x | grep sshd | grep -v root | grep priv | wc -l)
 [[ "$(cat /etc/DARKssh/Exp)" != "" ]] && _expuser=$(cat /etc/DARKssh/Exp) || _expuser="0"
 [[ -e /etc/openvpn/openvpn-status.log ]] && _onop=$(grep -c "10.8.0" /etc/openvpn/openvpn-status.log) || _onop="0"
-[[ -e /etc/default/dropbear ]] && _drp=$(ps aux | grep dropbear | grep -v grep | wc -l) _ondrp=$(($_drp - 1)) || _ondrp="0"
+[[ -e /etc/default/dropbear ]] && _drp=$(ps -e | grep dropbear | grep -v grep | wc -l) _ondrp=$(($_drp - 1)) || _ondrp="0"
 _onli=$(($_ons + $_onop + $_ondrp))
 _ram=$(printf ' %-9s' "$(free -h | grep -i mem | awk {'print $2'})")
 _usor=$(printf '%-8s' "$(free -m | awk 'NR==2{printf "%.2f%%", $3*100/$2 }')")
