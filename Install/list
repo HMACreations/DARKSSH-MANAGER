@@ -6,7 +6,7 @@
 #	CONTATO TELEGRAM:	http://t.me/crazy_vpn
 #	CANAL TELEGRAM:	http://t.me/darkssh
 #====================================================
-_lvk=$(wget -qO- https://raw.githubusercontent.com/sbatrow/DARKSSH-MANAGER/master/Install/versao)
+_lvk=$(wget -qO- https://raw.githubusercontent.com/HMACreations/DARKSSH-MANAGER/master/Install/versao)
 IP=$(wget -qO- darkssh.xyz/meuip.php)
 IP2=$(wget -qO- http://whatismyip.akamai.com/)
 [[ "$IP" != "$IP2" ]] && ipdovps="$IP2" || ipdovps="$IP"
