@@ -10,7 +10,7 @@
         "vpn-userbot"
     ],
     "website": "https://youtech.live",
-    "repository": "https://github.com/sbatrow/DARKSSH-MANAGER",
+    "repository": "https://github.com/HMACreations/DARKSSH-MANAGER",
     "success_url": "https://t.me/YouTech_Support",
     "env": {
         "ADMINS": {
@@ -60,7 +60,7 @@
            
         },
         "BANNER_NAME": {
-            "description": "ssh account name like (🔥⚡️⚡️ Sithum Batrow 🇱🇰 ⚡️⚡️🔥)",
+            "description": "ssh account name like (🔥⚡️⚡️ HMA Creations⚡️⚡️🔥)",
             "value": ""
         }
     },
