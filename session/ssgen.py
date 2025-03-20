@@ -1,8 +1,8 @@
 import os
 from time import sleep
 
-a = r"""
- 
+# Banner for the script
+BANNER = r"""
 ┏━━━┳━━━┳━━━┳┓┏━┳━━━┳━━━┳┓╋┏┓
 ┗┓┏┓┃┏━┓┃┏━┓┃┃┃┏┫┏━┓┃┏━┓┃┃╋┃┃
 ╋┃┃┃┃┃╋┃┃┗━┛┃┗┛┛┃┗━━┫┗━━┫┗━┛┃
@@ -11,93 +11,83 @@ a = r"""
 ┗━━━┻┛╋┗┻┛┗━┻┛┗━┻━━━┻━━━┻┛╋┗┛
 """
 
+def clear_screen():
+    """Clear the terminal screen."""
+    os.system("cls" if os.name == "nt" else "clear")
 
 def spinner():
+    """Display a spinner animation while checking for Telethon."""
     print("Checking if Telethon is installed...")
     for _ in range(3):
         for frame in r"-\|/-\|/":
-            print("\b", frame, sep="", end="", flush=True)
+            print(f"\r{frame}", end="", flush=True)
             sleep(0.1)
+    print("\r", end="")
 
-
-def clear_screen():
-    # https://www.tutorialspoint.com/how-to-clear-screen-in-python#:~:text=In%20Python%20sometimes%20we%20have,screen%20by%20pressing%20Control%20%2B%20l%20.
-    if os.name == "posix":
-        os.system("clear")
-    else:
-        # for windows platfrom
-        os.system("cls")
-
-
-def get_api_id_and_hash():
+def get_api_credentials():
+    """Prompt the user for their API ID and API HASH."""
     print(
-        "Get your API ID and API HASH from my.telegram.org or @ScrapperRoBot to proceed.\n\n",
+        "To generate a Telegram session string, you need your API ID and API HASH.\n"
+        "Get these from https://my.telegram.org or @ScrapperRoBot.\n"
     )
     try:
-        API_ID = int(input("Please enter your API ID: "))
+        api_id = int(input("Enter your API ID: "))
     except ValueError:
-        print("APP ID must be an integer.\nQuitting...")
-        exit(0)
-    API_HASH = input("Please enter your API HASH: ")
-    return API_ID, API_HASH
+        print("API ID must be an integer. Exiting...")
+        exit(1)
+    api_hash = input("Enter your API HASH: ")
+    return api_id, api_hash
 
-
-def telethon_session():
+def generate_session():
+    """Generate a Telegram session string using Telethon."""
     try:
-        spinner()
-
-        x = "\bFound an existing installation of Telethon...\nSuccessfully Imported.\n\n"
-    except BaseException:
-        print("Installing Telethon...")
+        from telethon.errors import (
+            ApiIdInvalidError,
+            PhoneNumberInvalidError,
+        )
+        from telethon.sessions import StringSession
+        from telethon.sync import TelegramClient
+    except ImportError:
+        print("Telethon not found. Installing...")
         os.system("pip install -U telethon")
+        from telethon.errors import (
+            ApiIdInvalidError,
+            PhoneNumberInvalidError,
+        )
+        from telethon.sessions import StringSession
+        from telethon.sync import TelegramClient
 
-        x = "\bDone. Installed and imported Telethon."
-    clear_screen()
-    print(a)
-    print(x)
+    api_id, api_hash = get_api_credentials()
 
-    # the imports
-
-    from telethon.errors.rpcerrorlist import ApiIdInvalidError, PhoneNumberInvalidError
-    from telethon.sessions import StringSession
-    from telethon.sync import TelegramClient
-
-    API_ID, API_HASH = get_api_id_and_hash()
-
-    # logging in
     try:
-        with TelegramClient(StringSession(), API_ID, API_HASH) as ultroid:
-            print("Generating a user session for DARKSSH...")
-            ult = ultroid.send_message(
+        with TelegramClient(StringSession(), api_id, api_hash) as client:
+            print("Generating session string...")
+            session_string = client.session.save()
+            client.send_message(
                 "me",
-                f"**DARKSSH** `SESSION`:\n\n`{ultroid.session.save()}`\n\n**Do not share this anywhere!**",
+                f"**DARKSSH Session String**:\n\n`{session_string}`\n\n"
+                "**Do not share this with anyone!**",
             )
             print(
-                "Your SESSION has been generated. Check your telegram saved messages!"
+                "Session string generated and sent to your Telegram 'Saved Messages'."
             )
-            exit(0)
     except ApiIdInvalidError:
-        print(
-            "Your API ID/API HASH combination is invalid. Kindly recheck.\nQuitting..."
-        )
-        exit(0)
-    except ValueError:
-        print("API HASH must not be empty!\nQuitting...")
-        exit(0)
+        print("Invalid API ID or API HASH. Please check your credentials.")
     except PhoneNumberInvalidError:
-        print("The phone number is invalid!\nQuitting...")
-        exit(0)
-
+        print("Invalid phone number. Please try again.")
+    except Exception as e:
+        print(f"An error occurred: {e}")
 
 def main():
+    """Main function to run the script."""
     clear_screen()
-    print(a)
-    telethon_session()
-    x = input("Run again? (y/n")
-    if x == "y":
+    print(BANNER)
+    generate_session()
+    if input("Run again? (y/n): ").lower() == "y":
         main()
     else:
+        print("Exiting...")
         exit(0)
 
-
-main()
+if __name__ == "__main__":
+    main()
