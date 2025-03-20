@@ -1,44 +1,6 @@
+# 📌DARKSSH By HMA new update v5.0.1 now
 
-# 🎁 Donate DarkSSH
-
-<details>
- 
- 
- <summary><p><b> 👉 Click To View <b>⚡️ 🎁 Donate to give away great projects 🎁</b></b></p></summary>
- 
- ✅ USDT (ERC20)
-
-🔗 Link : 
- ```
-0x131356670439b225da71c86d8ce4672189595de4
- ```
- 
- ✅ BTC (BTC)
-
-🔗 Link : 
- ```
-1CrbfVWq6CJvbGw8oAEgtQaKb4kEHxNReJ
- ```
- 
- ✅ TRX (TRC20)
-
-🔗 Link : 
- ```
-TPPcVjDrKLzD3VDhjhKsPWwsRMTz6GAsZR
- ```
- 
- ✅ BUSD (BEP20)
-
-🔗 Link : 
- ```
-0x131356670439b225da71c86d8ce4672189595de4
- ```
-
-</details>
-
-# 📌DARKSSH new update v5.0.0 now
-
-* UPDATE 06/04/2022
+* UPDATE 20/03/2025
 
 * DarkSSH Panel+ 🌀 DarkSSH WEB🌀
 
